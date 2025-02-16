@@ -1,0 +1,9 @@
+<%- include("partials/head.ejs") %>
+<%- include("partials/header.ejs") %>
+<% if (user) { %>
+    <a href="/evs">Click this link to view all EVs.</a>
+<% } else { %>
+    <a href="/sessions/logon">Click this link to logon.</a>
+    <a href="/sessions/register">Click this link to register.</a>
+<% } %>
+<%- include("partials/footer.ejs") %>
