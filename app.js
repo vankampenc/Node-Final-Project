@@ -6,6 +6,7 @@ require("dotenv").config();
 const session = require("express-session");
 const passport = require("passport");
 const passportInit = require("./passport/passportInit");
+const auth = require("./middleware/auth");
 
 //extra security packages
 const helmet =  require('helmet')
@@ -42,9 +43,6 @@ app.use(require("./middleware/storeLocals"));
 
 app.set("view engine", "ejs");
 
-app.get("/", (req, res) => {
-  res.render("index");
-});
 
 //csrf
 let csrf_development_mode = true;
@@ -61,6 +59,10 @@ const csrf_options = {
 const csrf_middleware = csrf(csrf_options); //initialize and return middleware
 
 app.use(csrf_middleware);
+
+app.get("/", (req, res) => {
+  res.render("index");
+});
 
 const MongoDBStore = require("connect-mongodb-session")(session);
 const url = process.env.MONGO_URI;
@@ -95,9 +97,9 @@ app.use("/sessions", require("./routes/sessionRoutes"));
 
 
 //EV Routes
-// const evsRouter = require('./routes/evs')
+const evsRouter = require('./routes/evs')
 
-// app.use('/evs', auth, evsRouter)
+app.use('/evs', auth, evsRouter)
 
 app.use((err, req, res, next) => {
   res.status(500).send(err.message);
