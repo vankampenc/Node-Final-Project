@@ -6,6 +6,10 @@
 <form method="POST" action="<%= ev ? '/evs/update/' + ev.id : '/evs' %>">
     <input type="hidden" name="_csrf" value="<%= _csrf %>">
     <div>
+        <label for="year">year:</label>
+        <input name="year" value="<%= ev ? ev.year : 2025 %>" type="number" id="year" />
+    </div>
+    <div>
         <label for="make">make:</label>
         <input name="make" value="<%= ev ? ev.make : '' %>" type="text" id="make" />
     </div>

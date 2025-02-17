@@ -6,14 +6,19 @@
 
 <table id="evs-table">
     <tr id="evs-table-header">
+        <th>Year</th>
         <th>Make</th>
         <th>Model</th>
         <th>Tax Credit Status</th>
+        <th>Last Updated</th>
         <th colspan="2"></th>
     </tr>
     <% if (evs && evs.length) { %>
         <% evs.forEach((ev)=> { %>
             <tr>
+                <td>
+                    <%= ev.year %>
+                </td>
                 <td>
                     <%= ev.make %>
                 </td>
@@ -22,6 +27,9 @@
                 </td>
                 <td>
                     <%= ev.status %>
+                </td>
+                <td>
+                    <%= ev.formattedLastUpdated %>
                 </td>
                 <td>
                     <a href="/evs/edit/<%= ev.id %>">

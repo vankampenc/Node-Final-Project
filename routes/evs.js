@@ -9,11 +9,11 @@ router.route("/edit/:id").get(editEV)
 router.route("/new").get(createEV)
 
 router.post("/update/:id", async (req, res) => {
-    const { body: { make, model, status }, params: { id: evID } } = req
+    const { body: { year, make, model, status }, params: { id: evID } } = req
 
     console.log("STATUS", req.body)
 
-    const ev = await Ev.findByIdAndUpdate({ _id: evID }, { make, model, status })
+    const ev = await Ev.findByIdAndUpdate({ _id: evID }, { year, make, model, status })
     console.log("Updated EV", ev)
     if (!ev) {
         throw new Error(`No EV with id ${evID}`)

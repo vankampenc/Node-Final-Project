@@ -1,6 +1,12 @@
 const mongoose = require('mongoose')
 
 const EvSchema = new mongoose.Schema({
+    year: {
+        type: Number,
+        required: [true, 'Please provide EV year'],
+        min: 2000,
+        max: 9999
+    },    
     make: {
         type: String,
         required: [true, 'Please provide EV make'],
@@ -15,6 +21,10 @@ const EvSchema = new mongoose.Schema({
         type: String,
         enum: ['credit eligible', 'not credit eligible', 'unknown'],
         default: 'unknown',
+    },
+    lastUpdated: {
+        type: Date,
+        required: [true, 'Please provide date last updated']
     },
     createdBy: {
         type: mongoose.Types.ObjectId,
