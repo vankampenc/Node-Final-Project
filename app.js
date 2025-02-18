@@ -14,6 +14,7 @@ const xss = require('xss-clean')
 const rateLimiter = require('express-rate-limit')
 
 const app = express();
+app.use(express.static('public'));
 
 // adding security packages
 app.use(rateLimiter({
