@@ -23,8 +23,8 @@ const passportInit = () => {
         } catch (e) {
           return done(e);
         }
-      }
-    )
+      },
+    ),
   );
 
   passport.serializeUser(async function (user, done) {

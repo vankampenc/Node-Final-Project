@@ -1,7 +1,7 @@
 const express = require("express");
 require("express-async-errors");
-const csrf = require('host-csrf')
-const cookieParser =require("cookie-parser")
+const csrf = require("host-csrf");
+const cookieParser = require("cookie-parser");
 require("dotenv").config();
 const session = require("express-session");
 const passport = require("passport");
@@ -9,28 +9,29 @@ const passportInit = require("./passport/passportInit");
 const auth = require("./middleware/auth");
 
 //extra security packages
-const helmet =  require('helmet')
-const xss = require('xss-clean')
-const rateLimiter = require('express-rate-limit')
+const helmet = require("helmet");
+const xss = require("xss-clean");
+const rateLimiter = require("express-rate-limit");
 
 const app = express();
-app.use(express.static('public'));
+app.use(express.static("public"));
 
 // adding security packages
-app.use(rateLimiter({
-    windowMs: 15 *60 * 1000,
-    max:100,
-}
-))
-app.use(helmet())
-app.use(xss())
+app.use(
+  rateLimiter({
+    windowMs: 15 * 60 * 1000,
+    max: 100,
+  }),
+);
+app.use(helmet());
+app.use(xss());
 
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
-  })
+  }),
 );
 
 passportInit();
@@ -43,7 +44,6 @@ app.use(require("body-parser").urlencoded({ extended: true }));
 app.use(require("./middleware/storeLocals"));
 
 app.set("view engine", "ejs");
-
 
 //csrf
 let csrf_development_mode = true;
@@ -96,11 +96,10 @@ app.use(session(sessionParams));
 // Routes
 app.use("/sessions", require("./routes/sessionRoutes"));
 
-
 //EV Routes
-const evsRouter = require('./routes/evs')
+const evsRouter = require("./routes/evs");
 
-app.use('/evs', auth, evsRouter)
+app.use("/evs", auth, evsRouter);
 
 app.use((err, req, res, next) => {
   res.status(500).send(err.message);
@@ -111,14 +110,13 @@ const port = process.env.PORT || 3000;
 
 const start = async () => {
   try {
-    await require("./db/connect")(process.env.MONGO_URI); 
+    await require("./db/connect")(process.env.MONGO_URI);
     app.listen(port, () =>
-      console.log(`Server is listening on port ${port}...`)
+      console.log(`Server is listening on port ${port}...`),
     );
   } catch (error) {
     console.log(error);
   }
 };
-
 
 start();

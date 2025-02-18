@@ -17,37 +17,40 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background-color: rgba(0, 0, 0, 0.664);
-  color: white
+  color: white;
 }
 
 h1 {
   margin: 0;
-  padding: .5em;
+  padding: 0.5em;
   font-size: 4em;
   font-weight: lighter;
   color: rgb(255, 151, 24);
 }
 
-h2 {  margin: 0;
-  padding: .5em;
+h2 {
+  margin: 0;
+  padding: 0.5em;
   font-size: 2.5em;
   font-weight: lighter;
-  color: rgb(255, 151, 24);}
+  color: rgb(255, 151, 24);
+}
 
 li {
   font-size: 1em;
 }
 
-td,th {
-  padding: .3em 1em;
+td,
+th {
+  padding: 0.3em 1em;
   text-align: left;
 }
 
 button {
   border-radius: 5px;
   border: 3px solid transparent;
-  padding: 0.15em .8em;
-  margin: 0.2em .3em;
+  padding: 0.15em 0.8em;
+  margin: 0.2em 0.3em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
@@ -57,7 +60,7 @@ button {
   color: blue;
 }
 button:hover {
-  border-color: blue
+  border-color: blue;
 }
 button:focus,
 button:focus-visible {
@@ -65,7 +68,7 @@ button:focus-visible {
 }
 
 input {
-  padding: .2em;
+  padding: 0.2em;
 }
 
 label {
@@ -86,7 +89,6 @@ label {
   }
 }
 
-
 /* Large Screens  */
 @media (min-width: 2000px) {
   body {
@@ -97,10 +99,9 @@ label {
 /* Phones Screens */
 @media (max-width: 450px) {
   body {
-    font-size: .9em;
+    font-size: 0.9em;
   }
 }
-
 
 /* Tablet Screens */
 @media (450px < width < 1100px) {
@@ -108,4 +109,3 @@ label {
     font-size: 1.1em;
   }
 }
-
