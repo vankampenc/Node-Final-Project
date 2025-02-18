@@ -14,12 +14,12 @@ router.post("/update/:id", async (req, res) => {
     params: { id: evID },
   } = req;
 
-  const ev = await Ev.findByIdAndUpdate(
-    { _id: evID },
+  const ev = await Ev.findOneAndUpdate(
+    { _id: evID, createdBy: req.user._id},
     { year, make, model, status },
   );
   if (!ev) {
-    throw new Error(`No EV with id ${evID}`);
+    throw new Error(`No edit access to EV with id ${evID}`);
   }
   res.redirect("/evs");
 });
@@ -28,7 +28,7 @@ router.post("/delete/:id", async (req, res) => {
   const {
     params: { id: evID },
   } = req;
-  const ev = await Ev.findOneAndDelete({ _id: evID });
+  const ev = await Ev.findOneAndDelete({ _id: evID, createdBy: req.user._id });
   if (!ev) {
     throw new Error(`No EV with id ${evID}`);
   }

@@ -12,7 +12,12 @@ const getAllEVs = async (req, res) => {
 const editEV = async (req, res) => {
   const id = req.params.id;
   const ev = await Ev.findById({ _id: id });
-  res.render("ev", { ev });
+  if (ev.createdBy.toString() === req.user._id.toString()) {
+    res.render("ev", { ev });
+  }
+  else {
+    res.render("noAccess")
+  }
 };
 
 const createEV = async (req, res) => {
