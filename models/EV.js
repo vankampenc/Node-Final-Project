@@ -23,10 +23,6 @@ const EvSchema = new mongoose.Schema(
       enum: ["credit eligible", "not credit eligible", "unknown"],
       default: "unknown",
     },
-    lastUpdated: {
-      type: Date,
-      required: [true, "Please provide date last updated"],
-    },
     createdBy: {
       type: mongoose.Types.ObjectId,
       ref: "User",

@@ -4,6 +4,11 @@
 <% } else { %>
     <h2>Create EV</h2>
 <% } %>
+<% if (errors) { errors.forEach((err)=> { %>
+    <div>
+      Error: <%= err %>
+    </div>
+    <% }) } %>
 <form method="POST" action="<%= ev ? '/evs/update/' + ev.id : '/evs' %>">
     <input type="hidden" name="_csrf" value="<%= _csrf %>">
     <div>

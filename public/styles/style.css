@@ -92,14 +92,14 @@ label {
 /* Large Screens  */
 @media (min-width: 2000px) {
   body {
-    font-size: 1.2em;
+    font-size: 1.7em;
   }
 }
 
 /* Phones Screens */
 @media (max-width: 450px) {
   body {
-    font-size: 0.9em;
+    font-size: 0.5em;
   }
 }
 

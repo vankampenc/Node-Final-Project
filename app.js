@@ -8,7 +8,7 @@ const passport = require("passport");
 const passportInit = require("./passport/passportInit");
 const auth = require("./middleware/auth");
 
-//extra security packages
+//imported security packages
 const helmet = require("helmet");
 const xss = require("xss-clean");
 const rateLimiter = require("express-rate-limit");
@@ -38,10 +38,7 @@ passportInit();
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(require("connect-flash")());
 app.use(require("body-parser").urlencoded({ extended: true }));
-
-app.use(require("./middleware/storeLocals"));
 
 app.set("view engine", "ejs");
 
@@ -49,8 +46,6 @@ app.set("view engine", "ejs");
 let csrf_development_mode = true;
 
 app.use(cookieParser(process.env.SESSION_SECRET));
-
-app.use(express.urlencoded({ extended: false }));
 
 const csrf_options = {
   protected_operations: ["PATCH"],
@@ -60,6 +55,12 @@ const csrf_options = {
 const csrf_middleware = csrf(csrf_options); //initialize and return middleware
 
 app.use(csrf_middleware);
+
+app.use(require("connect-flash")());
+
+app.use(require("./middleware/storeLocals"));
+
+app.use(express.urlencoded({ extended: false }));
 
 app.get("/", (req, res) => {
   res.render("index");
@@ -87,8 +88,8 @@ const sessionParams = {
 };
 
 if (app.get("env") === "production") {
-  app.set("trust proxy", 1); // trust first proxy
-  sessionParams.cookie.secure = true; // serve secure cookies
+  app.set("trust proxy", 1);
+  sessionParams.cookie.secure = true;
 }
 
 app.use(session(sessionParams));

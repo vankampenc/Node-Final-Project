@@ -14,14 +14,13 @@ const editEV = async (req, res) => {
   const ev = await Ev.findById({ _id: id });
   if (ev.createdBy.toString() === req.user._id.toString()) {
     res.render("ev", { ev });
-  }
-  else {
-    res.render("noAccess")
+  } else {
+    res.render("noAccess");
   }
 };
 
 const createEV = async (req, res) => {
-  res.render("ev", { ev: null });
+  res.render("ev", { ev: null, errors: req.flash("errors") });
 };
 
 module.exports = {
