@@ -4,6 +4,6 @@ This project displays the skills and knowledge I learned throughout the Node adv
 
 ## Viewing Instructions
 
-To view the deployed site, please visit the following link to view:
+To view the deployed site, please visit the following link to view: https://node-final-project-c-vankampen.onrender.com/
 
 To view locally, please run "npm install" in your terminal. Then run "npm start" in your terminal and view on localHost:3000.
