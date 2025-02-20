@@ -7,6 +7,8 @@ const session = require("express-session");
 const passport = require("passport");
 const passportInit = require("./passport/passportInit");
 const auth = require("./middleware/auth");
+const notFoundMiddleware = require("./middleware/not-found");
+const errorHandlerMiddleware = require("./middleware/error-handler");
 
 //imported security packages
 const helmet = require("helmet");
@@ -102,10 +104,8 @@ const evsRouter = require("./routes/evs");
 
 app.use("/evs", auth, evsRouter);
 
-app.use((err, req, res, next) => {
-  res.status(500).send(err.message);
-  console.log(err);
-});
+app.use(notFoundMiddleware);
+app.use(errorHandlerMiddleware);
 
 const port = process.env.PORT || 3000;
 
