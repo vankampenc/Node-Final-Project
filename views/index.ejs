@@ -1,0 +1,15 @@
+<%- include("partials/head.ejs") %>
+    <%- include("partials/header.ejs") %>
+        <% if (user) { %>
+            <button>
+                <a href="/evs">Click here to view all EVs</a>
+            </button>
+            <% } else { %>
+                <button>
+                    <a href="/sessions/logon">Click here to logon</a>
+                </button>
+                <button>
+                    <a href="/sessions/register">Click here to register</a>
+                </button>
+                <% } %>
+                    <%- include("partials/footer.ejs") %>
